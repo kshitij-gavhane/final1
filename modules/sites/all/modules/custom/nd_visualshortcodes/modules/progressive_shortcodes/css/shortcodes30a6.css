@@ -1,0 +1,53 @@
+/**========== Social Link ==============**/
+.link-tooltip {
+  float: left;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  margin: 0 5px 5px 0;
+}
+.link-tooltip > a {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 35px !important;
+}
+.link-tooltip > a::before,
+.link-tooltip > a::after {
+  font-size: 16px;
+  text-align: center;
+  display: block;
+  -webkit-transition: -webkit-top 0.4s;
+  -moz-transition: top 0.4s;
+  -o-transition: top 0.4s;
+  transition: top 0.4s;
+}
+.link-tooltip > a::before {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.link-tooltip > a::after {
+  content: attr(data-hover);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  top: 100%;
+  display: block;
+}
+.link-tooltip > a:hover:before {
+  top: -100%;
+}
+.link-tooltip > a:hover:after {
+  top: 0;
+}
+.link-tooltip > a.outlined {
+  border: 1px #ddd solid;
+}

@@ -1,0 +1,29 @@
+body {
+    background-color:#999999;
+    font-family: 'Oswald', sans-serif;
+}
+p
+{
+color:#000000;
+font-size:20px;
+}
+
+.textBox
+{
+height:30px;
+width:300px;
+}
+
+button
+{
+height:30px;
+width:150px;
+border-radius:8px;
+padding:10px;
+margin-bottom: 1cm;
+font-size:20px;
+font-family: 'Oswald', sans-serif;
+height:52px;
+cursor:pointer;
+background-color:wheat;
+}
