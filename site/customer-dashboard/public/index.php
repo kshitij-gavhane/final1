@@ -7,7 +7,16 @@ if ($link === false) {
   die("ERROR: Could not connect." . mysqli_connect_error());
 } else {
   if ($_SESSION["loggedin"] == true) {
-    header("Refresh");
+    if (!isset($_SESSION['refreshed'])) {
+      // Perform any necessary processing here
+    
+      // Set the session flag to indicate that the page has been refreshed
+      $_SESSION['refreshed'] = true;
+    
+      // Send the header to refresh the page
+      header("Refresh: 0");
+    }
+    // header("Refresh");
   } else {
     header('Location:/nmc-JK-master/site/account/login/index.php');
   }
@@ -499,5 +508,5 @@ if ($total > 0) {
   }
 }
 //echo 'console.log(' . json_encode($_SESSION['amount']) . ')';
-echo 'console.log(' . json_encode($_SESSION['date']) . ')';
+// echo 'console.log(' . json_encode($_SESSION['date']) . ')';
 ?>

@@ -1,28 +1,33 @@
 <?php include 'db_connect.php' ?>
-<?php 
+<?php
 
 $month_of = isset($_GET['month_of']) ? $_GET['month_of'] : date('Y-m');
 
 ?>
 <style>
-	.on-print{
+	.on-print {
 		display: none;
 	}
 </style>
 <noscript>
 	<style>
-		.text-center{
-			text-align:center;
+		.text-center {
+			text-align: center;
 		}
-		.text-right{
-			text-align:right;
+
+		.text-right {
+			text-align: right;
 		}
-		table{
+
+		table {
 			width: 100%;
 			border-collapse: collapse
 		}
-		tr,td,th{
-			border:1px solid black;
+
+		tr,
+		td,
+		th {
+			border: 1px solid black;
 		}
 	</style>
 </noscript>
@@ -39,15 +44,19 @@ $month_of = isset($_GET['month_of']) ? $_GET['month_of'] : date('Y-m');
 						</div>
 					</form>
 					<hr>
-						<div class="row">
-							<div class="col-md-12 mb-2">
+					<div class="row">
+						<div class="col-md-12 mb-2">
 							<button class="btn btn-sm btn-block btn-success col-md-2 ml-1 float-right" type="button" id="print"><i class="fa fa-print"></i> Print</button>
-							</div>
 						</div>
+					</div>
 					<div id="report">
 						<div class="on-print">
-							 <p><center>Rental Payments Report</center></p>
-							 <p><center>for the Month of <b><?php echo date('F ,Y',strtotime($month_of.'-1')) ?></b></center></p>
+							<p>
+								<center>Rental Payments Report</center>
+							</p>
+							<p>
+								<center>for the Month of <b><?php echo date('F ,Y', strtotime($month_of . '-1')) ?></b></center>
+							</p>
 						</div>
 						<div class="row">
 							<table class="table table-bordered">
@@ -55,44 +64,42 @@ $month_of = isset($_GET['month_of']) ? $_GET['month_of'] : date('Y-m');
 									<tr>
 										<th>#</th>
 										<th>Date</th>
-										<th>Tenant</th>
-										<th>Shop ID</th>
-										<th>Invoice</th>
+										<th>Tenant id</th>
+										<th>owner name</th>
+										<th>Invoice no.</th>
 										<th>Amount</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php 
+									<?php
 									$i = 1;
 									$tamount = 0;
-									$payments  = $conn->query("SELECT p.*,concat(t.lastname,', ',t.firstname,' ',t.middlename) as name,h.house_no FROM payments p inner join tenants t on t.id = p.tenant_id inner join houses h on h.id = t.house_id where date_format(p.date_created,'%Y-%m') = '$month_of' order by unix_timestamp(date_created)  asc");
-
-									$payments = $conn->query("Select p.date_created,p.tenant_id ,concat(t.lastname,', ',t.firstname,' ',t.middlename) as name,p.invoice,p.amount from payments p,tenants t where p.aadhar=t.aadhar order by p.date_created");
-									// $payments = $conn->query("SELECT amount as paid FROM payments WHERE MONTH(date_created) = MONTH(CURRENT_DATE()) AND YEAR(date_created) = YEAR(CURRENT_DATE())");
-									// $payments  = $conn->query("SELECT p.*, as name,h.house_no FROM payments p inner join tenants t on t.tenant_id = p.tenant_id inner join houses h on h.id = t.house_id where date_format(p.date_created,'%Y-%m') = '$month_of' order by unix_timestamp(date_created)  asc");
-									if($payments->num_rows > 0 ):
-									while($row=$payments->fetch_assoc()):
-										// $tamount += $row['amount'];
+									$payments = $conn->query(" SELECT p.date_created,p.tenant_id ,d.owner_name, p.invoice,p.amount from payments p,demand d where p.aadhar=d.aadhar and date_format(p.date_created,'%Y-%m') = '$month_of' order by unix_timestamp(date_created)  asc");
+									if ($payments->num_rows > 0) :
+										while ($row = $payments->fetch_assoc()) :
+											$tamount += $row['amount'];
 									?>
-									<tr>
-										<!-- <td><?php echo $i++ ?></td>
-										<td><?php echo date('M d,Y',strtotime($row['date_created'])) ?></td>
-										<td><?php echo ucwords($row['tenant_id']) ?></td>
-										<td><?php echo $row['name'] ?></td>
-										<td><?php echo $row['invoice'] ?></td>
-										<td class="text-right"><?php echo number_format($row['amount'],2) ?></td> -->
-									</tr>
-								<?php endwhile; ?>
-								<?php else: ?>
-									<tr>
-										<th colspan="6"><center>No Data.</center></th>
-									</tr>
-								<?php endif; ?>
+											<tr>
+												<td><?php echo $i++ ?></td>
+												<td><?php echo date('M d,Y', strtotime($row['date_created'])) ?></td>
+												<td><?php echo ucwords($row['tenant_id']) ?></td>
+												<td><?php echo $row['owner_name'] ?></td>
+												<td><?php echo $row['invoice'] ?></td>
+												<td class="text-right"><?php echo number_format($row['amount'], 2) ?></td>
+											</tr>
+										<?php endwhile; ?>
+									<?php else : ?>
+										<tr>
+											<th colspan="6">
+												<center>No Data.</center>
+											</th>
+										</tr>
+									<?php endif; ?>
 								</tbody>
 								<tfoot>
 									<tr>
 										<th colspan="5">Total Amount</th>
-										<th class='text-right'><?php echo number_format($tamount,2) ?></th>
+										<th class='text-right'><?php echo number_format($tamount, 2) ?></th>
 									</tr>
 								</tfoot>
 							</table>
@@ -104,20 +111,20 @@ $month_of = isset($_GET['month_of']) ? $_GET['month_of'] : date('Y-m');
 	</div>
 </div>
 <script>
-	$('#print').click(function(){
+	$('#print').click(function() {
 		var _style = $('noscript').clone()
 		var _content = $('#report').clone()
-		var nw = window.open("","_blank","width=800,height=700");
+		var nw = window.open("", "_blank", "width=800,height=700");
 		nw.document.write(_style.html())
 		nw.document.write(_content.html())
 		nw.document.close()
 		nw.print()
-		setTimeout(function(){
-		nw.close()
-		},500)
+		setTimeout(function() {
+			nw.close()
+		}, 500)
 	})
-	$('#filter-report').submit(function(e){
+	$('#filter-report').submit(function(e) {
 		e.preventDefault()
-		location.href = 'index.php?page=payment_report&'+$(this).serialize()
+		location.href = 'index.php?page=payment_report&' + $(this).serialize()
 	})
 </script>

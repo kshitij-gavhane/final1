@@ -21,14 +21,14 @@
 							</a></span>
 					</div>
 					<div class="card-body">
-						<table class="table table-condensed table-bordered table-hover">
+						<table class="table table-condensed table-bordered table-hover" id="myTable">
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
 									<th class="">Date</th>
 									<th class="">Tenant</th>
 									<th class="">Ref. Id</th>
-									<th class="">status</th>
+									<th class="">Status</th>
 									<th class="">Amount</th>
 									<th class="text-center">Action</th>
 								</tr>
@@ -38,34 +38,59 @@
 								$i = 1;
 								$invoices = $conn->query("SELECT p.*,owner_name FROM payments p inner join demand t on t.aadhar = p.aadhar  order by date(p.date_created) desc ");
 								while ($row = $invoices->fetch_assoc()) :
-
 								?>
 									<tr>
 										<td class="text-center"><?php echo $i++ ?></td>
-										<td>
-											<?php echo date('M d, Y', strtotime($row['date_created'])) ?>
+										<td><?php echo date('M d, Y', strtotime($row['date_created'])) ?></td>
+										<td class="">
+											<p><b><?php echo ucwords($row['owner_name']) ?></b></p>
 										</td>
 										<td class="">
-											<p> <b><?php echo ucwords($row['owner_name']) ?></b></p>
+											<p><b><?php echo ucwords($row['invoice']) ?></b></p>
 										</td>
-										<td class="">
-											<p> <b><?php echo ucwords($row['invoice']) ?></b></p>
-										</td>
-										<td class="">
-											<p> <b><?php echo ucwords($row['status']) ?></b></p>
+										<td class="" id="status_<?php echo $row['invoice'] ?>">
+											<p><b><?php echo ucwords($row['status']) ?></b></p>
 										</td>
 										<td class="text-right">
-											<p> <b><?php echo number_format($row['amount'], 2) ?></b></p>
+											<p><b><?php echo number_format($row['amount'], 2) ?></b></p>
 										</td>
 										<td class="text-center">
-											<!-- <button class="btn btn-sm btn-outline-primary edit_invoice" type="button" data-id="<?php echo $row['aadhar'] ?>" >verify</button> -->
-											<button class="btn btn-sm btn-outline-primary edit_invoice" type="button" onclick="if (confirm('Are you sure to verify this payment? (this process cannot be revised)')) {this.innerHTML = 'Verified'; this.classList.remove('btn-outline-primary'); this.classList.add('btn-success'); this.disabled = true;}">Verify</button>
-											<!-- <button class="btn btn-sm btn-outline-danger delete_invoice" type="button" data-id="<?php echo $row['aadhar'] ?>">Delete</button> -->
+											<!-- <button class="btn btn-sm btn-outline-primary edit_invoice" type="button" onclick="if (confirm('Are you sure to verify this payment?')) {this.innerHTML = 'Verified'; this.classList.remove('btn-outline-primary'); this.classList.add('btn-success'); this.disabled = true;}">Verify</button> -->
+											<button id="verify" class="btn btn-sm btn-outline-primary edit_invoice" type="button" onclick="changeStatus(<?php echo $row['invoice'] ?>) ">Verify</button>
 										</td>
 									</tr>
 								<?php endwhile; ?>
 							</tbody>
 						</table>
+
+						<script>
+							function changeStatus(invoice) {
+								// get the row and column index of the button clicked
+								var rowIndex = document.getElementById('status_' + invoice).parentNode.rowIndex;
+								var columnIndex = document.getElementById('status_' + invoice).cellIndex;
+
+								// show an alert box to confirm the change of status
+								var confirmation = confirm("Are you sure you want to verify this payment?");
+								if (confirmation == true) {
+									
+									// change the status of the column from "Pending" to "Verified"
+									document.getElementById("myTable").rows[rowIndex].cells[columnIndex].innerHTML = "Verified";
+
+									// send an AJAX request to update the status in the database
+									var xhr = new XMLHttpRequest();
+									xhr.open("POST", "update_status.php", true);
+									xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+									xhr.onreadystatechange = function() {
+										if (this.readyState == 4 && this.status == 200) {
+											// handle the response from the server
+										}
+									};
+									xhr.send("invoice=" + invoice);
+								}
+							}
+						</script>
+						<button id="verify" onclick="onClick()">Verify</button>
+
 					</div>
 				</div>
 			</div>
@@ -85,7 +110,7 @@
 
 	img {
 		max-width: 100px;
-		max-height: :150px;
+		max-height: 150px;
 	}
 </style>
 <script>
@@ -94,11 +119,11 @@
 	})
 
 	$('#new_invoice').click(function() {
-		uni_modal("New invoice", "manage_payment.php", "mid-large")
+		uni_modal("New invoice", "add_payment.php", "mid")
 
 	})
 	// $('.edit_invoice').click(function() {
-	// 	uni_modal("Manage invoice Details", "manage_payment.php?id=" + $(this).attr('data-id'), "mid-large")
+	// 	uni_modal("Manage invoice Details", "add_payment.php?id=" + $(this).attr('data-id'), "mid-large")
 
 	// })
 	$('.delete_invoice').click(function() {

@@ -120,13 +120,36 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="charts" style="margin: 150px;">
+                        <div class="chart">
+                            <h4>Earnings<select name="year">
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022" selected>2022</option>
+                                    <option value="2023">2023</option>
+                                </select></h4>
+                            <canvas id="barChart"></canvas><br>
+                            <canvas id="subBarChart"></canvas>
+                        </div>
+                        <div class="chart" id="doughnut-chart">
+                            <!-- <h2>Revenue</h2>
+                            <canvas id="doughnut"></canvas><br> -->
+                            <!-- <h2>Property Units</h2>
+                            <canvas id="subdoughnut"></canvas> -->
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script src="javascript\chart1.js"></script>
+<script src="javascript\chart2.js"></script>
+<script src="javascript\chart3.js"></script>
+
 <script>
     $('#manage-records').submit(function(e) {
         e.preventDefault()
