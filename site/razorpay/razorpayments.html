@@ -1,0 +1,60 @@
+<input type="text" name="name" id="name" placeholder="Your Name"><br>
+<input type="email" name="email" id="email" placeholder="Your email ID"><br>
+<input type="mob" name="mob" id="mob" placeholder="Your Mobile no."><br>
+<!-- <input type="addr" name="addr" id="addr" placeholder="Your Billing Address"><br> -->
+
+
+<button id="rzp-button1" onclick="paynow()">Pay</button>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    function paynow(){
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var mob = document.getElementById("mob").value;
+        const xhttp =new XMLHttpRequest();
+        xhttp.onload = function(){
+            var orderID = this.responseText;
+var options = {
+    "key": "rzp_test_K8jOPBaJ3H42yz", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Nagpur Munciple Corporation", //your business name
+    "description": "Test Transaction",
+    "image": "/site/images-favicon.png",
+    // "order_id": orderID, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    // "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+    },
+    "prefill": {
+        "name": name, //your customer's name
+        "email": email,
+        "contact": mob
+    },
+    "notes": {
+        "address": "sdjfk vjkavakv kv v"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+// document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+        }
+        xhttp.open("GET","orders.php?name="+name+"&email="+email);
+        xhttp.send();
+    }
+</script>

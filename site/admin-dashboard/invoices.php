@@ -55,8 +55,7 @@
 											<p><b><?php echo number_format($row['amount'], 2) ?></b></p>
 										</td>
 										<td class="text-center">
-											<!-- <button class="btn btn-sm btn-outline-primary edit_invoice" type="button" onclick="if (confirm('Are you sure to verify this payment?')) {this.innerHTML = 'Verified'; this.classList.remove('btn-outline-primary'); this.classList.add('btn-success'); this.disabled = true;}">Verify</button> -->
-											<button id="verify" class="btn btn-sm btn-outline-primary edit_invoice" type="button" onclick="changeStatus(<?php echo $row['invoice'] ?>) ">Verify</button>
+											<button id="Vbtn" class="btn btn-sm btn-outline-primary edit_invoice" type="button" onclick="changeStatus(<?php echo $row['invoice'] ?>)">Verify</button>
 										</td>
 									</tr>
 								<?php endwhile; ?>
@@ -72,10 +71,9 @@
 								// show an alert box to confirm the change of status
 								var confirmation = confirm("Are you sure you want to verify this payment?");
 								if (confirmation == true) {
-									
+
 									// change the status of the column from "Pending" to "Verified"
 									document.getElementById("myTable").rows[rowIndex].cells[columnIndex].innerHTML = "Verified";
-
 									// send an AJAX request to update the status in the database
 									var xhr = new XMLHttpRequest();
 									xhr.open("POST", "update_status.php", true);
@@ -89,8 +87,6 @@
 								}
 							}
 						</script>
-						<button id="verify" onclick="onClick()">Verify</button>
-
 					</div>
 				</div>
 			</div>

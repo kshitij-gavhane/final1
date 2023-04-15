@@ -211,14 +211,7 @@ if ($link === false) {
                       </span>
                     </a>
                   </li>
-                  <li class="flex">
-                    <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
-                      <span>Sales</span>
-                      <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600">
-                        2
-                      </span>
-                    </a>
-                  </li>
+                  
                   <li class="flex">
                     <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
                       <span>Alerts</span>
@@ -230,7 +223,7 @@ if ($link === false) {
             <!-- Profile menu -->
             <li class="relative">
               <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
-                <img class="object-cover w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82" alt="" aria-hidden="true" />
+                <img class="object-cover w-8 h-8 rounded-full" src="/site/customer-dashboard/public/assets/img/user.png" alt="" aria-hidden="true" />
               </button>
               <template x-if="isProfileMenuOpen">
                 <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu" class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700" aria-label="submenu">
@@ -320,7 +313,7 @@ if ($link === false) {
           </td>
           <td class="px-4 py-3 text-sm">' . $row["date_created"] . '</td>  
           <td class="px-4 py-3 text-sm">';
-                    if ($status == 'PAID') {
+                    if ($status == 'Verified') {
                       echo '<a href="./invoice/recipt.php" class="button" style="vertical-align:middle"><span>View</span></a>';
                     } else {
                       echo '<button class="button" style="vertical-align:middle" disabled onclick="alert("I am an alert box!");"><span>View</span></button>';

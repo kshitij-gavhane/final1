@@ -159,44 +159,11 @@ if ($link === false) {
             <!-- Theme toggler -->
             <!-- Theme toggler -->
             <!-- Notifications menu -->
-            <li class="relative">
-              <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple" @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu" aria-label="Notifications" aria-haspopup="true">
-                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
-                </svg>
-                <!-- Notification badge -->
-                <span aria-hidden="true" class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"></span>
-              </button>
-              <template x-if="isNotificationsMenuOpen">
-                <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="closeNotificationsMenu" @keydown.escape="closeNotificationsMenu" class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700" aria-label="submenu">
-                  <li class="flex">
-                    <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
-                      <span>Messages</span>
-                      <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600">
-                        13
-                      </span>
-                    </a>
-                  </li>
-                  <li class="flex">
-                    <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
-                      <span>Sales</span>
-                      <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600">
-                        2
-                      </span>
-                    </a>
-                  </li>
-                  <li class="flex">
-                    <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
-                      <span>Alerts</span>
-                    </a>
-                  </li>
-                </ul>
-              </template>
-            </li>
+
             <!-- Profile menu -->
             <li class="relative">
               <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
-                <img class="object-cover w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82" alt="" aria-hidden="true" />
+                <img class="object-cover w-8 h-8 rounded-full" src="/site/customer-dashboard/public/assets/img/user.png" alt="" aria-hidden="true" />
               </button>
               <template x-if="isProfileMenuOpen">
                 <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu" class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700" aria-label="submenu">
@@ -274,7 +241,7 @@ if ($link === false) {
                     <div class="row">
                       <div class="col-12 mb-2">
                         <p class="textmuted h8">Project / Description</p>
-                        <input class="form-control" type="text" placeholder="Legal Consulting">
+                        <input class="form-control" type="text" placeholder="9 आसिनगर झोन कमाल चौक बाजार">
                       </div>
                       <div class="col-6">
                         <p class="textmuted h8">Issused on</p>
@@ -291,35 +258,42 @@ if ($link === false) {
             </div>
             <div class="col-md-5 col-12 ps-md-5 p-0 ">
               <div class="box-left">
-                <p class="textmuted h8">Invoice</p>
-                <p class="fw-bold h7">Kshitij GAvhane</p>
-                <p class="textmuted h8">St.Vincent Pallotti </p>
-                <p class="textmuted h8 mb-2">Utah, United States 84104</p>
+                <h1>Bill Details</h1> <br>
+                <!-- <input type="text" name="name" id="name" placeholder="Your Name"><br> -->
+
+                <input class="fw-bold h7" type="text" name="name" id="name" placeholder=" Enter Your Name"></input><br>
+                <input class="fw-bold h7" type="email" name="email" id="email" placeholder=" Enter Your Email"></input><br>
+                <input class="fw-bold h7" type="mob" name="mob" id="mob" placeholder=" Enter Your Mobile no."></input><br>
+                <input class="fw-bold h7" type="Add" name="Add" id="Add" placeholder=" Your Billing ADDRESS"></input><br>
                 <div class="h8">
                   <div class="row m-0 border mb-3">
                     <div class="col-6 h8 pe-0 ps-2">
                       <p class="textmuted py-2">Items</p>
-                      <span class="d-block py-2 border-bottom">Legal Advising</span> <span class="d-block py-2">Expert Consulting</span>
+                      <span class="d-block py-2 border-bottom">Monthly Rent</span> <span class="d-block py-2">Taxes</span>
                     </div>
                     <div class="col-2 text-center p-0">
                       <p class="textmuted p-2">Qty</p>
-                      <span class="d-block p-2 border-bottom">2</span> <span class="d-block p-2">1</span>
+                      <span class="d-block p-2 border-bottom">12</span> <span class="d-block p-2">1</span>
                     </div>
                     <div class="col-2 p-0 text-center h8 border-end">
                       <p class="textmuted p-2">Price</p>
-                      <span class="d-block border-bottom py-2">&#8377 500</span> <span class="d-block py-2 ">&#8377 400</span>
+                      <span class="d-block border-bottom py-2">&#8377 10,452</span> <span class="d-block py-2 ">&#8377 579</span>
                     </div>
                     <div class="col-2 p-0 text-center">
                       <p class="textmuted p-2">Total</p>
-                      <span class="d-block py-2 border-bottom">&#8377 1000</span> <span class="d-block py-2">&#8377 400</span>
+                      <span class="d-block py-2 border-bottom">&#8377 1,25,431</span> <span class="d-block py-2">&#8377 579</span>
                     </div>
                   </div>
                   <div class="d-flex h7 mb-2">
                     <p class="">Total Amount</p>
-                    <p class="ms-auto">&#8377 1400</p>
+                    <p class="ms-auto">&#8377 <?php
+                                              error_reporting(0);
+                                              $amt = $_SESSION['total'];
+                                              echo $amt;
+                                              ?></p>
                   </div>
                   <div class="h8 mb-5">
-                    <p class="textmuted">Lorem ipsum dolor sit amet elit. Adipisci ea harum sed quaerat tenetur </p>
+                    <p class="textmuted">*Lorem ipsum dolor sit amet elit. Adipisci ea harum sed quaerat tenetur </p>
                   </div>
                 </div>
                 <div class="">
@@ -368,9 +342,61 @@ if ($link === false) {
         <button @click="closeModal" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
           Cancel
         </button>
-        <button class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-          Continue
-        </button>
+        <button class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" id="rzp-button1" onclick="paynow()">Continue</button>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+          function paynow() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var mob = document.getElementById("mob").value;
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+              var orderID = this.responseText;
+              var options = {
+                "key": "rzp_test_K8jOPBaJ3H42yz", // Enter the Key ID generated from the Dashboard
+                // "amount": '<?php echo $amt; ?>';, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "currency": "INR",
+                "name": "Nagpur Munciple Corporation", //your business name
+                "description": "Test Transaction",
+                "image": "/site/images-favicon.png",
+                // "order_id": orderID, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+                // "handler": function(response) {
+                //   alert(response.razorpay_payment_id);
+                //   alert(response.razorpay_order_id);
+                //   alert(response.razorpay_signature)
+                // },
+                "prefill": {
+                  "name": name, //your customer's name
+                  "email": email,
+                  "contact": mob
+                },
+                "notes": {
+                  "address": "sdjfk vjkavakv kv v"
+                },
+                "theme": {
+                  "color": "#3399cc"
+                }
+              };
+              var rzp1 = new Razorpay(options);
+              // rzp1.on('payment.failed', function(response) {
+              //   alert(response.error.code);
+              //   alert(response.error.description);
+              //   alert(response.error.source);
+              //   alert(response.error.step);
+              //   alert(response.error.reason);
+              //   alert(response.error.metadata.order_id);
+              //   alert(response.error.metadata.payment_id);
+              // });
+              // document.getElementById('rzp-button1').onclick = function(e){
+              rzp1.open();
+              e.preventDefault();
+            }
+            xhttp.open("GET", "orders.php?name=" + name + "&email=" + email);
+            xhttp.send();
+          }
+        </script>
+
       </footer>
     </div>
   </div>

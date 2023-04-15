@@ -18,7 +18,7 @@ if ($link === false) {
     }
     // header("Refresh");
   } else {
-    header('Location:/nmc-JK-master/site/account/login/index.php');
+    header('Location:./site/account/login/index.php');
   }
 }
 ?>
@@ -198,7 +198,7 @@ if ($link === false) {
             <!-- Profile menu -->
             <li class="relative">
               <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
-                <img class="object-cover w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1634896941598-b6b500a502a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1956&q=80" alt="" aria-hidden="true" />
+                <img class="object-cover w-8 h-8 rounded-full" src="/site/customer-dashboard/public/assets/img/user.png" alt="" aria-hidden="true" />
               </button>
               <template x-if="isProfileMenuOpen">
                 <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu" class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700" aria-label="submenu">

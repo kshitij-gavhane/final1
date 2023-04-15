@@ -11,7 +11,8 @@ body {
     background: #F1F1F1;
 }
 
-*, html {
+*,
+html {
     --primaryGradient: linear-gradient(93.12deg, #581B98 0.52%, #9C1DE7 100%);
     --secondaryGradient: linear-gradient(268.91deg, #581B98 -2.14%, #9C1DE7 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
@@ -74,7 +75,12 @@ body {
     margin-top: auto;
     display: flex;
     overflow-y: scroll;
+    background-color: #ffffff;
     flex-direction: column-reverse;
+}
+
+.text_message {
+    color: #3a3a3a;
 }
 
 .messages__item {
@@ -140,7 +146,7 @@ body {
 
 .messages__item {
     margin-top: 10px;
-    background: #E0E0E0;
+    background: #3a3a3a;
     padding: 8px 12px;
     max-width: 70%;
 }
@@ -177,6 +183,7 @@ body {
 .chatbox__footer input {
     width: 80%;
     border: none;
+    color: #3a3a3a;
     padding: 10px 10px;
     border-radius: 30px;
     text-align: left;
