@@ -6,13 +6,11 @@ Project Description
 
 ### Todo
 
-- [ ] tenants me delete button  
-- [ ] tenants me edit button  
-- [ ] tenants me new tenant  
 
 ### In Progress
 
 
 ### Done ✓
 
+- [x] system ban gaya🚀🚀  
 

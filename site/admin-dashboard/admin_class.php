@@ -285,7 +285,7 @@ Class Action {
 	}
 	function delete_tenant(){
 		extract($_POST);
-		$delete = $this->db->query("UPDATE tenants set status = 0 where id = ".$id);
+		$delete = $this->db->query("DELETE FROM demand where id = ".$id);
 		if($delete){
 			return 1;
 		}

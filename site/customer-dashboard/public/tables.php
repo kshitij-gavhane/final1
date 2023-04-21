@@ -211,7 +211,7 @@ if ($link === false) {
                       </span>
                     </a>
                   </li>
-                  
+
                   <li class="flex">
                     <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" href="#">
                       <span>Alerts</span>
@@ -258,42 +258,45 @@ if ($link === false) {
           </ul>
         </div>
       </header>
-      <main class="h-full pb-16 overflow-y-auto">
-        <div class="container grid px-6 mx-auto">
-          <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Invoice Details
-          </h2>
-          <!-- -->
-          <!-- With actions -->
-          <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-            All Invoices
-          </h4>
+      <div class="container grid px-6 mx-auto">
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+          Invoice Details
+        </h2>
+        <!-- -->
+        <!-- With actions -->
+        <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+          All Invoices
+        </h4>
 
 
-          <!------------------------------------------------------------------------------------------------------------  -->
+        <!------------------------------------------------------------------------------------------------------------  -->
 
-          <div class="w-full overflow-hidden rounded-lg shadow-xs">
-            <div class="w-full overflow-x-auto">
-              <table class="w-full whitespace-no-wrap">
-                <thead>
-                  <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">Amount</th>
-                    <th class="px-4 py-3">Status</th>
-                    <th class="px-4 py-3">Order ID</th>
-                    <th class="px-4 py-3">Date</th>
-                    <th class="px-4 py-3">Action</th>
-                  </tr>
-                </thead>
-                <?php
-                $aadhar = $_SESSION["aadhar"];
-                $query = "SELECT * FROM payments WHERE aadhar='$aadhar'"; //aadhar is table column name
-                $is_query_run = mysqli_query($link, $query);
-                $total = mysqli_num_rows($is_query_run);
-                if ($total > 0) {
-                  while ($row = mysqli_fetch_array($is_query_run)) {
-                    $status = $row['status'];
-                    echo '  
-      <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+          <div class="flex items-center justify-center">
+            <div class="w-full overflow-hidden rounded-lg shadow-xs">
+              <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                  <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                      <th class="px-4 py-3">Amount</th>
+                      <th class="px-4 py-3">Status</th>
+                      <th class="px-4 py-3">Order ID</th>
+                      <th class="px-4 py-3">Date</th>
+                      <th class="px-4 py-3">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    <?php
+                    $aadhar = $_SESSION["aadhar"];
+                    $query = "SELECT * FROM payments WHERE aadhar='$aadhar'";
+                    $is_query_run = mysqli_query($link, $query);
+                    $total = mysqli_num_rows($is_query_run);
+                    $total_amount = 0; // initialize total amount to 0
+                    if ($total > 0) {
+                      while ($row = mysqli_fetch_array($is_query_run)) {
+                        $status = $row['status'];
+                        $button_disabled = ($status == 'Pending') ? 'disabled opacity-50 cursor-not-allowed' : '';
+                        echo '  
         <tr class="text-gray-700 dark:text-gray-400">   
           <td class="px-4 py-3">
             <div class="flex items-center text-sm">
@@ -303,39 +306,53 @@ if ($link === false) {
             </div>
           </td>
           <td class="px-4 py-3 text-sm">
-          ' . $row["status"] . '
-          
+            ' . $row["status"] . '
           </td> 
           <td class="px-4 py-3 text-xs">
             <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
               ' . $row["invoice"] . '     
             </span>
           </td>
-          <td class="px-4 py-3 text-sm">' . $row["date_created"] . '</td>  
+          <td class="px-4 py-3 text-sm">' . $row["date_created"] .
+                          '</td>  
           <td class="px-4 py-3 text-sm">';
-                    if ($status == 'Verified') {
-                      echo '<a href="./invoice/recipt.php" class="button" style="vertical-align:middle"><span>View</span></a>';
+                        if ($status == 'Verified') {
+                          echo '<a href="recipt.php?invoice=' . $row['invoice'] . '" class="button" style="vertical-align:middle"><span>View</span></a>';
+                        } else {
+                          echo '<a href="" class="button" style="vertical-align:middle disabled onclick="alert("Payment not yet verified");"><span>View</span></a>';
+                          // echo '<button class="button" style="vertical-align:middle" disabled onclick="alert("Payment not yet verified");"><span>View</span></button>';
+                        }
+                        echo '</td>  
+        </tr>
+      ';
+                        $total_amount += $row["amount"]; // add current row's amount to total
+                      }
                     } else {
-                      echo '<button class="button" style="vertical-align:middle" disabled onclick="alert("I am an alert box!");"><span>View</span></button>';
+                      echo '<tr class="text-gray-700 dark:text-gray-400"><td class="px-4 py-3" colspan="5">No invoices found.</td></tr>';
                     }
-                    echo '</td>  
-          <br>
-        </tr> 
-      </tbody>
-    ';
-                  }
-                }
-                ?>
-
-              </table>
+                    // add new row with total amount
+                    echo '
+    <tr class="text-gray-700 dark:text-gray-400">
+      <td class="px-4 py-3 font-semibold">Total</td>
+      <td class="px-4 py-3"></td>
+      <td class="px-4 py-3"></td>
+      <td class="px-4 py-3"></td>
+      <td class="px-4 py-3 font-semibold">' . $total_amount . '</td>
+    </tr>
+  ';
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
+
           <!-- ---------------------------------------------------------------------------------------------------------- -->
         </div>
-      </main>
+        </main>
+      </div>
     </div>
-  </div>
 </body>
 
 </html>

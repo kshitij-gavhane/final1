@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<!-- kshitij -->
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
@@ -128,7 +129,7 @@
                         </div>
                         <div id="block-block-1" class="block block-block inline-block">
                             <div class="content">
-                                <ul class="social-list middle-ul" style="color: blue;">
+                                <ul class="social-list middle-ul">
                                     <li><a href="https://www.facebook.com/nmcngp/" class="fa fa-facebook" data-tooltip="true" data-title="facebook" data-position="bottom" target="_blank"></a></li>
                                     <li><a href="https://www.instagram.com/nmcngp/?hl=en" class="fa fa-instagram" data-tooltip="true" data-title="linkedin" data-position="bottom" target="_blank"></a></li>
                                     <li><a href="https://www.youtube.com/playlist?list=PLJ2cQThBOyTcJkxpFsdHYY1yGjhB9fsX5" class="fa fa-youtube" data-tooltip="true" data-title="skype" data-position="bottom" target="_blank"></a></li>
@@ -182,10 +183,10 @@
                                             <a href="about.php" title="">About </a>
                                             <ul>
                                                 <li>
-                                                    <a href="content/introduction.html">Introduction</a>
+                                                    <a href="#">Introduction</a>
                                                 </li>
                                                 <li>
-                                                    <a href="content/vision-and-vision-areas.html">Vision and Vision Areas</a>
+                                                    <a href="#">Vision and Vision Areas</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -232,6 +233,7 @@
                 </div>
             </div>
         </header>
+
         <div id="contentWrapper">
             <div class="pageContent">
 
@@ -348,7 +350,7 @@
                                                                             </p>
                                                                             <div class='row'>
                                                                                 <div class='zindx-1 col-md-3'>
-                                                                                    <a href="content/vision-and-vision-areas.html" target="_self">
+                                                                                    <a href="#" target="_self">
                                                                                         <div class=' wow fadeInLeft' data-wow-delay='200ms' data-wow-duration='500ms'>
                                                                                             <div class="icons-style-2 t-right"> <i class="icons icons-basic-alarm"></i> <span class="tri-line"></span>
                                                                                                 <h4 class="bold uppercase heading">VISION AND VISION AREAS</h4>
@@ -357,7 +359,7 @@
                                                                                         </div>
                                                                                     </a>
 
-                                                                                    <a href="content/programme-management.html" target="_self">
+                                                                                    <a href="#" target="_self">
                                                                                         <div class=' wow fadeInLeft' data-wow-delay='400ms' data-wow-duration='500ms'>
                                                                                             <div class="icons-style-2 t-right"> <i class="icons icons-basic-lock"></i> <span class="tri-line bottom-tri"></span>
                                                                                                 <h4 class="bold uppercase heading">PROGRAMME MANAGEMENT</h4>
@@ -376,7 +378,7 @@
 
                                                                                 </div>
                                                                                 <div class='zindx-1 col-md-3'>
-                                                                                    <a href="content/programme-pillars.html" target="_self">
+                                                                                    <a href="#" target="_self">
                                                                                         <div class=' wow fadeInRight' data-wow-delay='800ms' data-wow-duration='500ms'>
                                                                                             <div class="icons-style-2"> <i class="icons icons-basic-pencil-ruler"></i> <span class="tri-line left"></span>
                                                                                                 <h4 class="bold uppercase heading">PROGRAMME PILLARS</h4>
@@ -385,9 +387,9 @@
                                                                                         </div>
                                                                                     </a>
 
-                                                                                    <a href="content/approach-and-methodology.html" target="_self">
+                                                                                    <a href="#" target="_self">
                                                                                         <div class=' wow fadeInRight' data-wow-delay='1000ms' data-wow-duration='500ms'>
-                                                                                            <div class="icons-style-2"> <i class="icons icons-basic-home"></i> <span class="tri-line left bottom-tri" ></span>
+                                                                                            <div class="icons-style-2"> <i class="icons icons-basic-home"></i> <span class="tri-line left bottom-tri" style=""></span>
                                                                                                 <h4 class="bold uppercase heading" style="font-size:15px;">APPROACH AND METHODOLOGY</h4>
                                                                                                 <p>Some Text Here [...] </p>
                                                                                             </div>
@@ -794,12 +796,13 @@
                     <div id="block-block-40" class="block block-block">
                         <div class="content">
                             <div class="float-sm">
-                                <div class="fl-fl float-fb"><img src="writereaddata/files/center.png" style="padding:3% ;" /><a href="./market.php" target="_blank"> Show Markets</a></div>
-                                <div class="fl-fl float-tw"><img src="writereaddata/files/state1.png" style="padding:3% ;" /><a href="./account/login/index.html" target="_blank"> Pay Rent</a></div>
-                                <div class="fl-fl float-gp"><img src="writereaddata/files/state2.png" style="padding:3% ;" /> <a href="./account/select/select.php" target="_blank"> Dashboard</a></div>
+                                <div class="fl-fl float-fb"><img src="./assets/images/market.png" style="padding:3% ;" /><a href="./market.php" target="_blank"> Show Markets</a></div>
+                                <div class="fl-fl float-tw"><img src="./assets/images/rent.png" style="padding:3% ;" /><a href="./account/login/index.html" target="_blank"> Pay Rent</a></div>
+                                <div class="fl-fl float-gp"><img src="./assets/images/dashboard.png" style="padding:3% ;" /> <a href="./account/select/select.php" target="_blank"> Dashboard</a></div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <!-- Footer start -->
@@ -923,7 +926,9 @@
     </script>
     <script type="text/javascript" src="../code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
- 
+        //  <![CDATA[//><!--
+        window.jQuery || document.write("<script src='sites/all/modules/contrib/jquery_update/replace/jquery/3.3/jquery.min.html'>\x3C/script>")
+        //--><!]]>
     </script>
     <script type="text/javascript" src="../modules/misc/jquery.once7839.js?v=1.2"></script>
     <script type="text/javascript" src="../modules/misc/drupal30a6.js?rej7ie"></script>
@@ -931,6 +936,26 @@
     <script type="text/javascript" src="../modules/sites/all/modules/custom/art_revolution/rs-plugin/js/jquery.themepunch.plugins.min30a6.js?rej7ie"></script>
     <script type="text/javascript" src="../modules/sites/all/modules/custom/art_revolution/rs-plugin/js/jquery.themepunch.revolution.min30a6.js?rej7ie"></script>
     <script type="text/javascript">
+        // <!--//--><![CDATA[//><!--
+
+        (function($) {
+            var form = $.fn.form = function() {
+                return;
+            };
+        })(jQuery);
+
+        //--><!]]>
+    </script>
+    <script type="text/javascript" src="../modules/sites/all/modules/custom/nd_visualshortcodes/modules/progressive_shortcodes/vendor/slick/slick.min30a6.js?rej7ie"></script>
+    <script type="text/javascript">
+        // <!--//--><![CDATA[//><!--
+        var text_resize_scope = "pageWrapper";
+        var text_resize_minimum = "14";
+        var text_resize_maximum = "25";
+        var text_resize_line_height_allow = 0;
+        var text_resize_line_height_min = "16";
+        var text_resize_line_height_max = "36";
+        //--><!]]>
     </script>
     <script type="text/javascript" src="../modules/sites/all/modules/contrib/text_resize/text_resize30a6.js?rej7ie"></script>
     <script type="text/javascript" src="../modules/sites/all/modules/custom/mod_block_twitter/theme_twitter/js/jquery.tweet30a6.js?rej7ie"></script>
@@ -960,14 +985,57 @@
     <script type="text/javascript" src="../modules/sites/all/themes/superfine/assets/js/particle30a6.js?rej7ie"></script>
     <script type="text/javascript" src="../modules/sites/all/themes/superfine/assets/js/swithcer30a6.js?rej7ie"></script>
     <script type="text/javascript">
-
-
+        // <!--//--><![CDATA[//><!--
+        jQuery(document).ready(function($) {
+            if ($.fn.cssOriginal != undefined) $.fn.css = $.fn.cssOriginal;
+            $('#art-revolution .tp-banner').show().revolution({
+                "delay": "5000",
+                "startheight": "500",
+                "startwidth": "1170",
+                "keyboardNavigation": "on",
+                "onHoverStop": "off",
+                "thumbWidth": "150",
+                "thumbHeight": "100",
+                "thumbAmount": "3",
+                "navigationType": "bullet",
+                "navigationArrows": "verticalcentered",
+                "navigationStyle": "square",
+                "navigationHAlign": "center",
+                "navigationVAlign": "bottom",
+                "touchenabled": "on",
+                "drag_block_vertical": "false",
+                "hideThumbsOnMobile": "on",
+                "hideBulletsOnMobile": "on",
+                "hideArrowsOnMobile": "on",
+                "hideTimerBar": "on",
+                "fullWidth": "on",
+                "autoHeight": "on",
+                "fullScreenAlignForce": "on",
+                "forceFullWidth": "on",
+                "fullScreen": "off",
+                "fullScreenOffsetContainer": "#topheader",
+                "dottedOverlay": "none",
+                "soloArrowLeftHalign": "left",
+                "soloArrowLeftValign": "center",
+                "soloArrowLeftHOffset": 0,
+                "soloArrowLeftVOffset": 0,
+                "soloArrowRightHalign": "right",
+                "soloArrowRightValign": "center",
+                "soloArrowRightHOffset": 0,
+                "soloArrowRightVOffset": 0,
+                "lazyLoad": "on",
+                "timer": "bottom",
+                "shuffle": "off"
+            });
+        })
+        //--><!]]>
     </script>
     <script type="text/javascript" src="../modules/sites/all/modules/custom/nd_visualshortcodes/modules/progressive_shortcodes/vendor/wow/wow.min30a6.js?rej7ie"></script>
     <script type="text/javascript" src="../modules/sites/all/modules/custom/nd_visualshortcodes/modules/progressive_shortcodes/js/jquery.easing.1.330a6.js?rej7ie"></script>
     <script type="text/javascript" src="../modules/sites/all/modules/custom/nd_visualshortcodes/modules/progressive_shortcodes/vendor/owl_carousel/owl.carousel.min30a6.js?rej7ie"></script>
     <script type="text/javascript" src="../modules/sites/all/modules/custom/nd_visualshortcodes/modules/progressive_shortcodes/js/shortcodes_load30a6.js?rej7ie"></script>
     <script type="text/javascript">
+
     </script>
 </body>
 

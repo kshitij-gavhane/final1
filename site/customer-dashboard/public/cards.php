@@ -146,7 +146,7 @@ if ($link === false) {
             <!-- Theme toggler -->
             <!-- Theme toggler -->
             <!-- Notifications menu -->
-            
+
             <!-- Profile menu -->
             <li class="relative">
               <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
@@ -317,7 +317,8 @@ if ($link === false) {
                   nihil dolorum.
                 </p> -->
               <p>Select file(s):</p> <input type="file" id="input" multiple accept="image/*" />
-              <div id="table">
+              <div id="table"><br>
+                <button type="button">Upload!</button>
               </div>
 
 
@@ -327,10 +328,7 @@ if ($link === false) {
                 Agreement
               </h4>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Fuga, cum commodi a omnis numquam quod? Totam exercitationem
-                quos hic ipsam at qui cum numquam, sed amet ratione! Ratione,
-                nihil dolorum.
+                <b>*</b>The parties agree that any disputes arising from this agreement will be resolved through binding arbitration in accordance with the rules of the American Arbitration Association.
               </p>
             </div>
           </div>

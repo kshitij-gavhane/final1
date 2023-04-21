@@ -166,7 +166,7 @@ Class Master extends DBConnection {
 	}
 	function delete_tenant(){
 		extract($_POST);
-		$del = $this->conn->query("DELETE FROM `tenants` where id = '{$id}'");
+		$del = $this->conn->query("DELETE FROM `demand` where id = '{$id}'");
 		if($del){
 			$resp['status'] = 'success';
 			$this->settings->set_flashdata('success',"tenant successfully deleted.");

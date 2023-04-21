@@ -120,36 +120,76 @@
                             </div>
                         </div>
                     </div>
-                    <div class="charts" style="margin: 150px;">
-                        <div class="chart">
-                            <h4>Earnings<select name="year">
-                                    <option value="2019">2019</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022" selected>2022</option>
-                                    <option value="2023">2023</option>
-                                </select></h4>
-                            <canvas id="barChart"></canvas><br>
-                            <canvas id="subBarChart"></canvas>
+                    <hr>
+                    <p id="demo"></p>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <canvas id="monthlydue"></canvas>
                         </div>
-                        <div class="chart" id="doughnut-chart">
-                            <!-- <h2>Revenue</h2>
-                            <canvas id="doughnut"></canvas><br> -->
-                            <!-- <h2>Property Units</h2>
-                            <canvas id="subdoughnut"></canvas> -->
+
+                        <div class="col-sm-4">
+                            <canvas id="typeofshop"></canvas>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-<script src="javascript\chart1.js"></script>
-<script src="javascript\chart2.js"></script>
-<script src="javascript\chart3.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script>
+    var zones = <?php echo json_encode($zones); ?>;
+    document.getElementById("demo").innerHTML = zones;
+</script>
+<script>
+    const ctx = document.getElementById('monthlydue');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['आसिनगर झोन-वागदे', 'धंतोली -देशपांडे', 'धरमपेठ-भानुसे', 'धरमपेठ-राऊत', 'गांधीबाग-देवकाटे', 'गांधीबाग-जिवतोडे', 'हनुमान नगर- राठोड', 'लकडगंज-नाना वाट', 'मंगळवारी-बडे', 'सतरंजीपुरा-कपिल ठाकरे'],
+            datasets: [{
+                label: 'Monthly Due Rent',
+                data: [12, 19, 3, 5, 2, 3, 4, 5, 6, 7],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+<script>
+    const ctx1 = document.getElementById('typeofshop');
+
+    new Chart(ctx1, {
+        type: 'pie',
+        data: {
+            labels: ['अस्थाई जागा', 'ओटे', 'IOC जागा', 'POC जागा', 'मोठी शाॅप', 'पडाव जागा'],
+            datasets: [{
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+
+    });
+</script>
 <script>
     $('#manage-records').submit(function(e) {
         e.preventDefault()
@@ -211,3 +251,34 @@
         })
     }
 </script>
+<?php
+$query = "SELECT DISTINCT zone_name FROM bakaya";
+$is_query_run = mysqli_query($conn, $query);
+$zones = array();
+if ($is_query_run) {
+    while ($query_executed = mysqli_fetch_assoc($is_query_run)) {
+        $zones[] = $query_executed["zone_name"];
+    }
+}
+while ($zone = array_pop($zones)) {
+    $query = "SELECT SUM(monthly_rent) FROM bakaya WHERE zone_name = '$zone'";
+    $is_query_run = mysqli_query($conn, $query);
+    $monthly_rent = array();
+    //  $i=0;
+    if ($is_query_run) {
+        while ($query_executed = mysqli_fetch_assoc($is_query_run)) {
+            $monthly_rent[] = $query_executed["SUM(monthly_rent)"];
+        }
+    }
+    //  $i=$i+1;
+}
+//print_r($monthly_rent);
+$query = "SELECT DISTINCT shop_type FROM bakaya";
+$is_query_run = mysqli_query($conn, $query);
+$shop_types = array();
+if ($is_query_run) {
+    while ($query_executed = mysqli_fetch_assoc($is_query_run)) {
+        $shop_types[] = $query_executed["shop_type"];
+    }
+}
+?>

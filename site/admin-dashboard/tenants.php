@@ -16,10 +16,10 @@
 				<div class="card">
 					<div class="card-header">
 						<b>List of Tenant</b>
-						<span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_tenant">
+						<!-- <span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="javascript:void(0)" id="new_tenant">
 								<i class="fa fa-plus"></i> New Tenant
-							</a></span>
-						<!-- <span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="./add_tenant.php" > -->
+							</a></span> -->
+						<span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="./add_tenant.php" > 
 						<i class="fa fa-plus"></i> New Tenant
 						</a></span>
 					</div>
@@ -30,7 +30,7 @@
 									<th class="text-center">#</th>
 									<th class="">Owner Name</th>
 									<th class="">Owner ID</th>
-									<th class="">Shop Name</th>
+									<th class="">Market Name</th>
 									<th class="">Shop Type</th>
 									<th class="">Shop Monthly Rent</th>
 									<th class="">total(yearly)</th>
@@ -85,7 +85,7 @@
 											<?php echo $row['duration'] ?>
 										</td>
 										<td class="text-center">
-											<button class="btn btn-sm btn-outline-primary view_payment" type="button" data-id="<?php echo $row['id'] ?>">View</button>
+											<!-- <button class="btn btn-sm btn-outline-primary view_payment" type="button" data-id="<?php echo $row['id'] ?>">View</button> -->
 											<button class="btn btn-sm btn-outline-primary edit_tenant" type="button" data-id="<?php echo $row['id'] ?>">Edit</button>
 											<button class="btn btn-sm btn-outline-danger delete_tenant" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
 										</td>
@@ -189,7 +189,7 @@
 										<td class="text-center">
 											<button class="btn btn-sm btn-outline-primary view_payment" type="button" data-id="<?php echo $row['id'] ?>">View</button>
 											<button class="btn btn-sm btn-outline-primary edit_tenant" type="button" data-id="<?php echo $row['id'] ?>">Edit</button>
-											<button class="btn btn-sm btn-outline-danger delete_tenant" type="button" data-id="<?php echo $row['aadhar'] ?>">Delete</button>
+											<button class="btn btn-sm btn-outline-danger delete_tenant" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
 										</td>
 									</tr>
 								<?php endwhile; ?>
@@ -246,13 +246,13 @@
 		_conf("Are you sure to delete this Tenant?", "delete_tenant", [$(this).attr('data-id')])
 	})
 
-	function delete_tenant($tenant_id) {
+	function delete_tenant($id) {
 		start_load()
 		$.ajax({
 			url: 'ajax.php?action=delete_tenant',
 			method: 'POST',
 			data: {
-				id: $tenant_id
+				id: $id
 			},
 			success: function(resp) {
 				if (resp == 1) {

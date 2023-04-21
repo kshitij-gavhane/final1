@@ -359,8 +359,8 @@ if ($link === false) {
                 "name": "Nagpur Munciple Corporation", //your business name
                 "description": "Test Transaction",
                 "image": "/site/images-favicon.png",
-                // "order_id": orderID, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+                //  "order_id": orderID, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "callback_url": "/site/razorpay/success.php",
                 // "handler": function(response) {
                 //   alert(response.razorpay_payment_id);
                 //   alert(response.razorpay_order_id);

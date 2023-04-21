@@ -1,18 +1,29 @@
-<?php
-session_start();
-/* Attempt to connect to MySQL database */
-$link = new mysqli('localhost', 'root', '', 'final');
-// Check connection
-if ($link === false) {
-    die("ERROR: Could not connect." . mysqli_connect_error());
-} else {
-    if ($_SESSION["loggedin"] == true) {
-        header("Refresh");
-    } else {
-        header('Location:/site/account/login/index.php');
-    }
-}
-?>
+          <?php
+            // Include the database connection file
+            session_start();
+            /* Attempt to connect to MySQL database */
+            $link = new mysqli('localhost', 'root', '', 'final');
+            // Check connection
+            if ($link === false) {
+                die("ERROR: Could not connect." . mysqli_connect_error());
+            } else {
+                if ($_SESSION["loggedin"] == true) {
+                    header("Refresh");
+                } else {
+                    header('Location:/site/account/login/index.php');
+                }
+            }
+            // Fetch the invoice ID from the URL parameter
+            $invoice_id = $_GET['invoice'];
+            // Fetch the payment details from the database
+            $query = "SELECT * FROM payments WHERE invoice='$invoice_id'";
+            $result = mysqli_query($link, $query);
+
+            // Check if any payment record is found with the given invoice ID
+            if (mysqli_num_rows($result) > 0) {
+                // Fetch the payment details from the result set
+                $payment = mysqli_fetch_assoc($result);
+            ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,13 +95,10 @@ if ($link === false) {
 
         <table style="table-layout: fixed; width: 100%; padding: 5px; ">
             <tbody>
-<?php
-$i = 1;
-?>
                 <tr>
 
 
-                    <td class="text-center" style="color: brown;"><?php echo $i++ ?></td>
+                    <td class="text-center" style="color: brown;">Invoice #<?php echo $payment['invoice']; ?></td>
 
                     <td></td>
 
@@ -100,9 +108,7 @@ $i = 1;
 
                     <td></td>
 
-                    <td class="">
-                        DATE : 22 / 01 /2021
-                    </td>
+                          <td><?php echo $payment['date_created']; ?></td>
                 </tr>
             </tbody>
         </table>
@@ -153,24 +159,8 @@ $i = 1;
                         एकूण रुपये
                     </td>
 
-                    <?php
-                    $aadhar = $_SESSION["aadhar"];
-                    $query = "SELECT * FROM payments WHERE aadhar='$aadhar' and status='Verified'"; //aadhar is table column name
-                    $is_query_run = mysqli_query($link, $query);
-                    $total = mysqli_num_rows($is_query_run);
-                    if ($total > 0) {
-                        while ($row = mysqli_fetch_array($is_query_run)) {
-                            $status = $row['status'];
-                            echo '  
-<td width="88%" style="font-size: large;font-weight: bold; border-bottom: 1px solid black;" class="">
-                        &#8377 <div>
-                ' . $row["amount"] . '
-              </div>
-                        
-                    </td>    ';
-                        }
-                    }
-                    ?>
+                                              <td><?php echo $payment['amount']; ?></td>
+
 
                     <!-- <td width="88%" style="font-size: large;font-weight: bold; border-bottom: 1px solid black;" class="">
                         &#8377 1701
@@ -206,7 +196,7 @@ $i = 1;
                     </td>
 
                     <td width="35%" style="font-size: large; font-weight: bold;border-bottom: 1px solid black;" class="">
-                        03 / 01 / 2021
+                       <?php echo $payment['date_created']; ?>
                     </td>
 
 

@@ -55,7 +55,6 @@ ob_end_flush();
 
 	#login-left {
 		position: absolute;
-		left: 0;
 		width: calc(60%);
 		height: calc(100%);
 		background: #59b6ec61;
@@ -63,7 +62,8 @@ ob_end_flush();
 		align-items: center;
 		background: url(assets/uploads/Nagpur_Municipal_Corporation_logo.png);
 		background-repeat: no-repeat;
-		background-size: cover;
+		background-position: center center;
+		background-size: contain;
 	}
 
 	#login-right .card {
@@ -77,7 +77,7 @@ ob_end_flush();
 		background: white;
 		padding: .5em 0.7em;
 		border-radius: 50% 50%;
-		color: #000000b3;
+		color: white;
 		z-index: 10;
 	}
 

@@ -71,14 +71,14 @@
 									<!-- <th class="text-center">Market</th> -->
 									<th class="text-center">Market name</th>
 									<th class="text-center">shop count</th>
-									<th class="text-center">Other</th>
+									<th class="text-center">Zone Inspector</th>
 									<!-- <th class="text-center">Action</th> -->
 								</tr>
 							</thead>
 							<tbody>
 								<?php
 								$i = 1;
-								$house = $conn->query("SELECT zone_name, market_name, COUNT(*) as shop_count FROM demand_1 GROUP BY market_name");
+								$house = $conn->query("SELECT d.zone_name, d.market_name, COUNT(*) as shop_count ,z.zone_insp FROM demand_1 d , zone_insp z where d.zone_name = z.zone_name GROUP BY market_name");
 								while ($row = $house->fetch_assoc()) :
 								?>
 									<tr>
@@ -95,7 +95,7 @@
 											<p> <b><?php echo $row['shop_count'] ?></b></p>
 										</td>
 										<td class="">
-											<p><b><?php echo $row['zone_name'] ?></b></p>
+											<p><b><?php echo $row['zone_insp'] ?></b></p>
 										</td>
 
 										<!-- <td class=""> <p>House #: <b><?php echo $row['house_no'] ?></b></p></td> -->
